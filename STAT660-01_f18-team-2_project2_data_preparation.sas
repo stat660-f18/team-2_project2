@@ -67,7 +67,6 @@ This dataset only contains ID column and five new socioeconomics attributes.
 [Data Dictionary] http://archive.ics.uci.edu/ml/datasets/Bank+Marketing#
 
 [Unique ID Schema] The column ID is a unique id.
-
 ;
 
 
@@ -75,12 +74,12 @@ This dataset only contains ID column and five new socioeconomics attributes.
 
 * create output formats;
 proc format;
-    value y
-        no="Client did not subscribe a term deposit"
-        yes="Client subscribed a term deposit"
+
+    value $y
+        "no"  = "Client did not subscribe a term deposit"
+        "yes" = "Client subscribed a term deposit"
     ;
 run;
-
 
 * setup environmental parameters;
 %let inputDataset1URL =
@@ -88,7 +87,6 @@ https://github.com/stat660/team-2_project2/blob/master/data/bank_nonsubsriber.cs
 ;
 %let inputDataset1Type = CSV;
 %let inputDataset1DSN = bank_nonsubscriber;
-
 
 %let inputDataset2URL =
 https://github.com/stat660/team-2_project2/blob/master/data/bank_subsriber.csv?raw=true
@@ -99,7 +97,6 @@ https://github.com/stat660/team-2_project2/blob/master/data/bank_subsriber.csv?r
 %let inputDataset3URL =
 https://github.com/stat660/team-2_project2/blob/master/data/bank_se.csv?raw=true
 ;
-
 %let inputDataset3Type = CSV;
 %let inputDataset3DSN = bank_se;
 
@@ -152,12 +149,78 @@ https://github.com/stat660/team-2_project2/blob/master/data/bank_se.csv?raw=true
 
 * sort and check raw datasets for duplicates with respect to their unique ids,
   removing blank rows, if needed;
-/** This step was eleminated because the "ID" variable was created, thus this
-step is useless **/
+
+proc sort
+        nodupkey
+        data = bank_nonsubscriber
+        dupout = bank_nonsubscriber_dups
+        out = bank_nonsubscriber_sorted
+    ;
+    by
+        id
+    ;
+run;
+
+proc sort
+        nodupkey
+        data = bank_subscriber
+        dupout = bank_subscriber_dups
+        out = bank_subscriber_sorted
+    ;
+    by
+        id
+    ;
+run;
+
+proc sort
+        nodupkey
+        data = bank_se
+        dupout = bank_se_dups
+        out = bank_se_sorted
+    ;
+    by
+        id
+    ;
+run;
 
 * combine the bank_nonsubsriber and bank_subscriber datasets vertically. Both
 datasets have identical column names;
+
 data bank_client;
+    retain
+        id
+        age
+        job
+        marital
+        education
+        default
+        housing
+        loan
+        contact
+        duration
+        campaign
+        pdays
+        previous
+        poutcome
+        y
+    ;
+    keep
+        id
+        age
+        job
+        marital
+        education
+        default
+        housing
+        loan
+        contact
+        duration
+        campaign
+        pdays
+        previous
+        poutcome
+        y
+    ;
     length
         job       $20.
         education $20.
@@ -171,9 +234,7 @@ data bank_client;
     set
         bank_nonsubscriber
         bank_subscriber
-
     ;
-  
     by
         id
     ;
@@ -182,6 +243,40 @@ run;
 * build analytic dataset from combining bank_client and bank_se horizontally,
 the matching column is ID.;
 data bank_analysis;
+    retain
+        id
+        age
+        job
+        marital
+        education
+        default
+        housing
+        loan
+        contact
+        duration
+        campaign
+        pdays
+        previous
+        poutcome
+        y
+    ;
+    keep
+        id
+        age
+        job
+        marital
+        education
+        default
+        housing
+        loan
+        contact
+        duration
+        campaign
+        pdays
+        previous
+        poutcome
+        y
+    ;
     merge
         bank_client
         bank_se

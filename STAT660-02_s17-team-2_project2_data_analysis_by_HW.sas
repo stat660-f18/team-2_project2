@@ -34,12 +34,27 @@ title2
 ;
 
 footnote1
-
+'Bank users' demographic data such as age,job,marital,education,housing and loan are used to draw a whole picture of bank users.'
 
 ;
 
 footnote2
+'The average age of the bank users are 40 years old. Sixty-one percent of them are married and most of them (82.43%) don't have a loan.'
 
+;
+
+footnote3
+'Based on the results, almost half(48%) of the bank users are admin and blue-collar.Besides, there are 16.4% of them are techinician.'
+
+;
+
+footnote4
+'Thiry percent of the users have a university degree while 23% are in high school degree.'
+
+;
+
+footnote5
+'According to the result, half of them(52.38%) have a house while almost another half(45.21%) don't.'
 
 ;
 
@@ -111,11 +126,54 @@ proc means
      mean median maxdec=2
      ;
      var 
-        age,balance
+        age
      ;
 run;
 title;
 footnote;
+
+
+title1
+'Research Question: Would the age of bank users affect the campaign result?'
+
+;
+
+title2
+'Rationale: Based on the analysis before, we noticed that the average age of the bank users are 40 years. This would help to find out what's the relationship between users'age and campaign result which could help to improve the campain performance.'
+
+;
+
+footnote1
+'A logistic regression model was built to check how the age of users affect their decision of subscription.'
+
+;
+
+footnote2
+'Based on the result, a small p value indicate that user's age did affect their final decisions in the campaign even though the affectness is relatively small.'
+
+;
+
+*
+Methodology: A logistic regression model is used to find out the relationship. 
+
+Limitations:Since user's age is only one of the social and economic context 
+attributes.This analysis result may not be enough to undersatand how would the 
+social and economic context affect the marketing campaign.
+Follow-up Steps:Include more user attributes in the model.
+;
+
+proc logistic 
+    data = bank_analysis
+    ;
+    model y (event = 'yes')= age
+    ;
+run;
+
+
+run;
+title;
+footnote;
+
 
 title1
 'Research Question:What's the relationship between previous campaign outcome and this campaign result?'
@@ -127,84 +185,41 @@ title2
 ;
 
 footnote1
-''
+'A logistic regression was built to check the relationship between outcome of the previous marketing campaign and the outcome of this marketing campaign.'
 
 ;
 
 footnote2
-''
+'The results tells us if the outcome of previous marketing campaign was success, the outcome of this marketing is more likely to be success.'
 
 ;
 
 footnote3
-'' 
+'There is a small p-value in the analysis result which tells us that this relationship is significant in reality.'
 
 ;
 *
-Methodology: Use PROC glm to run the logistic regression to find out the
+Methodology: Use PROC logistic to run the logistic regression to find out the
 exact relationship and whether this is significant in reality.
-Limitations: There are many'unkonwn' and 'other' values in the data set.
+Limitations: There are many'nonexistent' values in the data set.
 This will effect the accurace of the result because of the poor data quality.
-Follow-up Steps: Find out a propriate value instead of using 'unknown' value
+Follow-up Steps: Find out a propriate value instead of using 'nonexistent' value
 ;
 
-proc logistic 
-    data=bank_analysis
+proc logistic
+        data=bank_analysis
     ;
-    model y = poutcome
+    class
+        poutcome
     ;
-run;
-
-proc glm 
-    ;
-    model y = poutcome
-    ;
+    model
+        y (event ='yes')= poutcome
+    ;   
 run;
 
 title;
 footnote;
 
-title1
-'Research Question: Is the comsumer price related to the campaign result?'
-
-;
-
-title2
-'Rationale: This would help to find out whether there is a relationship among them. Moreover how did social economic affect the marketing campaign result if there is a relationship.'
-
-;
-
-footnote1
-''
-
-;
-
-footnote2
-''
-
-;
-
-footnote3
-''
-
-;
-
-*
-Methodology: Use proc glm to build a regression model to find out the relationship. 
-
-Limitations:Since consumer price is only one of the social and economic context 
-attributes.This analysis result may not be enough to undersatand how would the 
-social and economic context affect the marketing campaign.
-Follow-up Steps:Include more social and economic context attributes in the model.
-;
-
-proc glm 
-    ;
-    model y = cons.price
-    ;
-run;
 
 
-run;
-title;
-footnote;
+

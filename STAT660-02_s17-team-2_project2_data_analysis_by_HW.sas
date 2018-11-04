@@ -70,7 +70,7 @@ proc freq
     data =bank_analysis
      ;
      table 
-        age 
+        age_range 
      /nocum
      ;
 run;
@@ -149,6 +149,9 @@ footnote1
 ;
 
 footnote2
+'As user's age increase, it's more likely that the campaign would be successful but the probability is very small.'
+
+footnote3
 'Based on the result, a small p value indicate that user's age did affect their final decisions in the campaign even though the affectness is relatively small.'
 
 ;

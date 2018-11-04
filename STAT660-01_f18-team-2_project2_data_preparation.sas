@@ -74,10 +74,16 @@ This dataset only contains ID column and five new socioeconomics attributes.
 
 * create output formats;
 proc format;
-
     value $y
         "no"  = "Client did not subscribe a term deposit"
         "yes" = "Client subscribed a term deposit"
+    ;
+    value age
+        17-27 = "17-27"
+        28-38 = "28-38"
+        39-48 = "39-48"
+        49-59 = "49-59"
+        60-98 = "over 60"
     ;
 run;
 
@@ -232,8 +238,8 @@ data bank_client;
         job       $20.
     ;
     set
-        bank_nonsubscriber
-        bank_subscriber
+        bank_nonsubscriber_sorted
+        bank_subscriber_sorted
     ;
     by
         id
@@ -259,6 +265,12 @@ data bank_analysis;
         previous
         poutcome
         y
+        emp_var_rate
+        cons_price_idx
+        cons_conf_idx
+        euribor3m
+        nr_employed
+        age_range
     ;
     keep
         id
@@ -276,12 +288,46 @@ data bank_analysis;
         previous
         poutcome
         y
+        emp_var_rate
+        cons_price_idx
+        cons_conf_idx
+        euribor3m
+        nr_employed
+        age_range
     ;
     merge
         bank_client
-        bank_se
+        bank_se_sorted
     ;
     by
         ID
     ;
+    if 
+        age < 27 
+    then 
+        do;
+            age_range = "17-27";
+        end;
+    else if 
+        age < 38 
+    then 
+        do;
+            age_range = "28-38";
+        end;
+    else if 
+        age < 48 
+    then 
+        do;
+            age_range = "39-48";
+        end;
+    else if 
+        age < 59 
+    then 
+        do;
+            age_range = "49-59";
+        end;
+    else 
+        do;
+            agen_range = "over 60";
+        end;
 run;

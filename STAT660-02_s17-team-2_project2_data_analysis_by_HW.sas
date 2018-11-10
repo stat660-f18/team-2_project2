@@ -35,22 +35,22 @@ footnote1
 ;
 
 footnote2
-'The average age of the bank users are 40 years old. Sixty-one percent of them are married and most of them (82.43%) do not have a loan.'
+'The average age of the bank users are 40 years old while almost half of them are from 28-38 years Sixty-one percent of them are married and most of them (82.43%) do not have a loan.'
 
 ;
 
 footnote3
-'Based on the results, almost half(48%) of the bank users are admin and blue-collar.Besides, there are 16.4% of them are techinician.'
+'Based on the results, almost half of the bank users are admin and blue-collar.Besides, there are sixteen percent of them are techinician.'
 
 ;
 
 footnote4
-'Thiry percent of the users have a university degree while 23% are in high school degree.'
+'Thiry percent of the users have a university degree while twenty-three percent are in high school degree.'
 
 ;
 
 footnote5
-'According to the result, half of them(52.38%) have a house while almost another half(45.21%) do not.'
+'According to the result, half of them have a house while almost another half do not.'
 
 ;
 
@@ -61,59 +61,17 @@ Limitations: Since there are limited demographic variables in the dataset,
 it would be better to include more attributes.
 Follow-up Steps: Add more client demographic data into the data set or combine
 with other data results of bank clients analysis.
+;
 
-proc freq 
-    data =bank_analysis
-     ;
-     table 
-        age_range 
-     /nocum
-     ;
-run;
 
+%let TopN = 10;
 proc freq 
-    data =bank_analysis
-     ;
-     table 
-        job 
-     /nocum
-     ;
-run;
-
-proc freq 
-    data =bank_analysis
-     ;
-     table 
-        marital
-     /nocum
-     ;
-run;
-
-proc freq 
-    data =bank_analysis
-     ;
-     table 
-        education
-     /nocum
-     ;
-run;
-
-proc freq 
-    data =bank_analysis
-     ;
-     table 
-        housing
-     /nocum
-     ;
-run;
-
-proc freq 
-    data =bank_analysis
-     ;
-     table 
-        loan
-     /nocum
-     ;
+    data=bank_analysis ORDER=FREQ
+    ;
+    table 
+        age_range job marital education housing loan
+    / maxlevels=&TopN Plots=FreqPlot(orient=horizontal scale=percent)
+    ; 
 run;
 
 

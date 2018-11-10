@@ -19,27 +19,23 @@ See included file for dataset properties
 X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))""";
 
 * load external file that generates analytic dataset FRPM1516_analytic_file;
-%include '.\STAT660-02_s17-team-2_project1_data_preparation.sas'
-
+%include '.\STAT660-02_s17-team-2_project2_data_preparation.sas'
 ;
 
 title1
 'Research Question: Who were the clients of this bank?'
-
 ;
 
 title2
 'Rationale: This would help to identify the client of this bank, helping to understand who would be the target clients.'
-
 ;
 
 footnote1
-'Bank users' demographic data such as age,job,marital,education,housing and loan are used to draw a whole picture of bank users.'
-
+'Bank user demographic data such as age,job,marital,education,housing and loan are used to draw a whole picture of bank users.'
 ;
 
 footnote2
-'The average age of the bank users are 40 years old. Sixty-one percent of them are married and most of them (82.43%) don't have a loan.'
+'The average age of the bank users are 40 years old. Sixty-one percent of them are married and most of them (82.43%) do not have a loan.'
 
 ;
 
@@ -54,7 +50,7 @@ footnote4
 ;
 
 footnote5
-'According to the result, half of them(52.38%) have a house while almost another half(45.21%) don't.'
+'According to the result, half of them(52.38%) have a house while almost another half(45.21%) do not.'
 
 ;
 
@@ -62,7 +58,7 @@ footnote5
 Methodology: Used proc freq to find the frequency of custmoer demographic
 data, using the result to draw a picture of the customers of the bank.
 Limitations: Since there are limited demographic variables in the dataset,
-it would be better to include more attributes for more accurate results.
+it would be better to include more attributes.
 Follow-up Steps: Add more client demographic data into the data set or combine
 with other data results of bank clients analysis.
 

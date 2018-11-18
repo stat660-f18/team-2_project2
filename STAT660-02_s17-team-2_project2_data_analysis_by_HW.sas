@@ -159,7 +159,7 @@ footnote;
 
 
 title1
-'Research Question:Is the consumer confidence related to the campaign result?'
+'Research Question:Is the monthly consumer confidence index and consumer price index related to the campaign result?'
 ;
 
 title2
@@ -167,43 +167,39 @@ title2
 ;
 
 footnote1
-'A logistic regression was built to check the relationship between outcome of the previous marketing campaign and the outcome of this marketing campaign.'
+'A logistic regression was built to check the relationship between the monthly consumer confidence index, consumer price index and the campaign result.'
 
 ;
 
 footnote2
-'The results tells us if the outcome of previous marketing campaign was success, the outcome of this marketing is more likely to be success.'
+'Their relationships are significant in reality due to the small p values in the analysis result.'
 
 ;
 
 footnote3
-'There is a small pvalue in the analysis result which tells us that this relationship is significant in reality.'
-
+'The consumer confidence index has a positive relationship with the campaign result which means if monthly consumer confidence index increases,users are more likely to be a subscriber after campaign.However, monthly consumer price index has a negative effect on the campaign result.'
 ;
 
 
 *
 
-Note: Note: This compares the column ‘y’ from bank_nonsubscriber, bank_subscriber 
-and the column ‘consumer confidence’ from bank_se.
+Note:This compares the column ‘y’ from bank_nonsubscriber, bank_subscriber 
+and the column ‘consumer confidence’ and 'consumer price' from bank_se data set.
 
 Methodology: Use PROC logistic to run the logistic regression to find out the
 exact relationship and whether this is significant in reality.
 
-Limitations: There are many'nonexistent' values in the data set.
-This will effect the accurace of the result because of the poor data quality.
+Limitations: Besides the economics attributs,there are also social attributes which may
+have effections on the campaign result at the same time.
 
-Follow-up Steps: Find out a propriate value instead of using 'nonexistent' value
+Follow-up Steps: Conduct the analysis with all the possible social/economics attributes.
 ;
 
 proc logistic
         data=bank_analysis
     ;
-    class
-        poutcome
-    ;
     model
-        y (event ='yes')= poutcome
+        y (event ='yes')= cons_price_idx cons_conf_idx
     ;   
 run;
 

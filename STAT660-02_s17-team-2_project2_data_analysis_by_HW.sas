@@ -20,9 +20,10 @@ See included file for dataset properties
 * set relative file import path to current directory (using standard SAS trick);
 X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))""";
 
+
 * load external file that generates analytic dataset FRPM1516_analytic_file;
-%include '.\STAT660-01_f18-team-2_project2_data_preparation.sas'
-;
+%include '.\STAT660-01_f18-team-2_project2_data_preparation.sas';
+
 
 *******************************************************************************;
 * Research Question Analysis Starting Point;
@@ -61,8 +62,9 @@ footnote5
 ;
 
 *
-Note: This is essentially trying to take a look at the users variables age,job,marital,education,housing and loan in 
-the original bank_subscriber and bank_nonsubscriber datasets.
+Note: This is essentially trying to take a look at the users variables age,
+job,marital,education,housing and loan in the original bank_subscriber 
+and bank_nonsubscriber datasets.
 
 Methodology: Used proc freq to find the frequency of custmoer demographic
 data, using the result to draw a picture of the customers of the bank.
@@ -70,25 +72,25 @@ data, using the result to draw a picture of the customers of the bank.
 Limitations: Since there are limited demographic variables in the dataset,
 it would be better to include more attributes.
 
-Follow-up Steps: Add more client demographic data into the data set or combine
-with other data results of bank clients analysis.
+Follow-up Steps: Add more client demographic data into the data set or 
+combine with other data results of bank clients analysis.
 ;
 
 
-%let TopN = 10;
 proc freq 
-    data=bank_analysis ORDER=FREQ
+        data=bank_analysis ORDER=FREQ
     ;
     table 
         age_range job marital education housing loan
-    / maxlevels=&TopN Plots=FreqPlot(orient=horizontal scale=percent)
+        / maxlevels=10
+    Plots=FreqPlot(orient=horizontal scale=percent)
     ; 
 run;
 
 
 proc means 
-    data =bank_analysis 
-     mean median maxdec=2
+        data =bank_analysis 
+        mean median maxdec=2
      ;
      var 
         age
@@ -127,27 +129,27 @@ footnote3
 ;
 
 *
-Note: This compares the columns of age attributes to the outcome of subscription 
-colume y in data_subscriber and data_nonsubscriber datasets.
+Note: This compares the columns of age attributes to the outcome of 
+subscription colume y in data_subscriber and data_nonsubscriber datasets.
 
-Methodology: A logistic regression model is used to find out the relationship. 
+Methodology: A logistic regression model is used to find out the 
+relationship. 
 
 Limitations:Since user age is only one of the social and economic context 
-attributes.This analysis result may not be enough to undersatand how would the 
-social and economic context affect the marketing campaign.
+attributes.This analysis result may not be enough to undersatand how would 
+the social and economic context affect the marketing campaign.
 
 Follow-up Steps:Include more user attributes in the model.
 ;
 
 proc logistic 
-    data = bank_analysis
+        data = bank_analysis
     ;
-    model y (event = 'yes')= age
+    model 
+        y (event = 'yes')= age
     ;
 run;
 
-
-run;
 
 title;
 footnote;
@@ -184,15 +186,17 @@ footnote3
 *
 
 Note:This compares the column ‘y’ from bank_nonsubscriber, bank_subscriber 
-and the column ‘consumer confidence’ and 'consumer price' from bank_se data set.
+and the column ‘consumer confidence’ and 'consumer price' from bank_se data 
+set.
 
-Methodology: Use PROC logistic to run the logistic regression to find out the
-exact relationship and whether this is significant in reality.
+Methodology: Use PROC logistic to run the logistic regression to find out 
+the exact relationship and whether this is significant in reality.
 
-Limitations: Besides the economics attributs,there are also social attributes which may
-have effections on the campaign result at the same time.
+Limitations: Besides the economics attributs,there are also social attributes 
+which may have effections on the campaign result at the same time.
 
-Follow-up Steps: Conduct the analysis with all the possible social/economics attributes.
+Follow-up Steps: Conduct the analysis with all the possible social/economics 
+attributes.
 ;
 
 proc logistic

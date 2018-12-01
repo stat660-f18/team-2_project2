@@ -9,8 +9,8 @@ questions regarding bank clients' decisions to subscribe a term deposit at a
 Portuguese banking institution.
 
 Dataset Name: bank_analysis created in external file 
-team-2_project2_data_preparation.sas, which is assumed to be in the same 
-directory as this file
+STAT660-01_f18-team-2_project2_data_preparation.sas, which is assumed to be in 
+the same directory as this file
 
 See included file for dataset properties
 ;
@@ -21,9 +21,8 @@ See included file for dataset properties
 X "cd ""%substr(%sysget(SAS_EXECFILEPATH),1,%eval(%length(%sysget(SAS_EXECFILEPATH))-%length(%sysget(SAS_EXECFILENAME))))""";
 
 
-* load external file that generates analytic datasets cde_2014_analytic_file,
-  cde_2014_analytic_file_sort_frpm, and cde_2014_analytic_file_sort_sat;
-%include '.\team-2_project2_data_preparation.sas';
+* load external file that generates analytic datasets bank_analysis;
+%include '.\STAT660-01_f18-team-2_project2_data_preparation.sas';
 
 
 *******************************************************************************;

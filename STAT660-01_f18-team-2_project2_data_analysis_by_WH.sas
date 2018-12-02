@@ -81,11 +81,22 @@ proc freq
         data=bank_analysis ORDER=FREQ
     ;
     table 
-        age_range job marital education housing loan
-        / maxlevels=10
+        job education 
+        / maxlevels=5
     Plots=FreqPlot(orient=horizontal scale=percent)
     ; 
 run;
+
+proc freq 
+        data=bank_analysis ORDER=FREQ
+    ;
+    table 
+        housing loan marital age_range 
+        /
+    Plots=FreqPlot(orient=horizontal scale=percent)
+    ; 
+run;
+
 
 
 proc means 
@@ -111,20 +122,21 @@ title1
 ;
 
 title2
-'Rationale: Based on the analysis before, we noticed that the average age of the bank users are 40 years. This would help to find out what's the relationship between users'age and campaign result which could help to improve the campain performance.'
+"Rationale: Based on the analysis before, we noticed that the average age of the bank users are 40 years. This would help to find out what's the relationship between users'age and campaign result which could help to improve the campain performance."
 
 ;
 
 footnote1
-'A logistic regression model was built to check how the age of users affect their decision of subscription.'
+"A logistic regression model was built to check how the age of users affect their decision of subscription."
 
 ;
 
 footnote2
-'As user age increase, it is more likely that the campaign would be successful but the probability is relatively small.'
+"As user age increase, it is more likely that the campaign would be successful but the probability is relatively small."
+;
 
 footnote3
-'Based on the result, a small pvalue indicate that user age did affect their final decisions in the campaign even though the affectness is relatively small.'
+"Based on the result, a small pvalue indicate that user age did affect their final decisions in the campaign even though the affectness is relatively small."
 
 ;
 
@@ -161,25 +173,24 @@ footnote;
 
 
 title1
-'Research Question:Is the monthly consumer confidence index and consumer price index related to the campaign result?'
+"Research Question:Is the monthly consumer confidence index and consumer price index related to the campaign result?"
 ;
 
 title2
-'Rationale: This would help understand how did social economic affect the marketing campaign result.'
+"Rationale: This would help understand how did social economic affect the marketing campaign result."
 ;
 
 footnote1
-'A logistic regression was built to check the relationship between the monthly consumer confidence index, consumer price index and the campaign result.'
+"A logistic regression was built to check the relationship between the monthly consumer confidence index, consumer price index and the campaign result."
 
 ;
 
 footnote2
-'Their relationships are significant in reality due to the small p values in the analysis result.'
-
+"The small p values tell us that the relationships are significant in reality."
 ;
 
 footnote3
-'The consumer confidence index has a positive relationship with the campaign result which means if monthly consumer confidence index increases,users are more likely to be a subscriber after campaign.However, monthly consumer price index has a negative effect on the campaign result.'
+"The consumer confidence index has a positive relationship with the campaign result which means if monthly consumer confidence index increases,users are more likely to be a subscriber after campaign.However, monthly consumer price index has a negative effect on the campaign result."
 ;
 
 

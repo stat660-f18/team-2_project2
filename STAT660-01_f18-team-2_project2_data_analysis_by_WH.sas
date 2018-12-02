@@ -173,25 +173,25 @@ footnote;
 
 
 title1
-'Research Question:Is the monthly consumer confidence index and consumer price index related to the campaign result?'
+"Research Question:Is the monthly consumer confidence index and consumer price index related to the campaign result?"
 ;
 
 title2
-'Rationale: This would help understand how did social economic affect the marketing campaign result.'
+"Rationale: This would help understand how did social economic affect the marketing campaign result."
 ;
 
 footnote1
-'A logistic regression was built to check the relationship between the monthly consumer confidence index, consumer price index and the campaign result.'
+"A logistic regression was built to check the relationship between the monthly consumer confidence index, consumer price index and the campaign result."
 
 ;
 
 footnote2
-'Their relationships are significant in reality due to the small p values in the analysis result.'
+"Their relationships are significant in reality due to the small p values in the analysis result."
 
 ;
 
 footnote3
-'The consumer confidence index has a positive relationship with the campaign result which means if monthly consumer confidence index increases,users are more likely to be a subscriber after campaign.However, monthly consumer price index has a negative effect on the campaign result.'
+"The consumer confidence index has a positive relationship with the campaign result which means if monthly consumer confidence index increases,users are more likely to be a subscriber after campaign.However, monthly consumer price index has a negative effect on the campaign result."
 ;
 
 

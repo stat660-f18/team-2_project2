@@ -81,7 +81,7 @@ proc freq
         data=bank_analysis ORDER=FREQ
     ;
     table 
-        age_range job education 
+        job education 
         / maxlevels=5
     Plots=FreqPlot(orient=horizontal scale=percent)
     ; 
@@ -91,7 +91,8 @@ proc freq
         data=bank_analysis ORDER=FREQ
     ;
     table 
-        housing loan marital
+        housing loan marital age_range 
+        /
     Plots=FreqPlot(orient=horizontal scale=percent)
     ; 
 run;

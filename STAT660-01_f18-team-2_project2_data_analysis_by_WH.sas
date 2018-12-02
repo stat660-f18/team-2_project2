@@ -81,11 +81,21 @@ proc freq
         data=bank_analysis ORDER=FREQ
     ;
     table 
-        age_range job marital education housing loan
-        / maxlevels=10
+        age_range job education 
+        / maxlevels=5
     Plots=FreqPlot(orient=horizontal scale=percent)
     ; 
 run;
+
+proc freq 
+        data=bank_analysis ORDER=FREQ
+    ;
+    table 
+        housing loan marital
+    Plots=FreqPlot(orient=horizontal scale=percent)
+    ; 
+run;
+
 
 
 proc means 
@@ -111,20 +121,21 @@ title1
 ;
 
 title2
-'Rationale: Based on the analysis before, we noticed that the average age of the bank users are 40 years. This would help to find out what's the relationship between users'age and campaign result which could help to improve the campain performance.'
+"Rationale: Based on the analysis before, we noticed that the average age of the bank users are 40 years. This would help to find out what's the relationship between users'age and campaign result which could help to improve the campain performance."
 
 ;
 
 footnote1
-'A logistic regression model was built to check how the age of users affect their decision of subscription.'
+"A logistic regression model was built to check how the age of users affect their decision of subscription."
 
 ;
 
 footnote2
-'As user age increase, it is more likely that the campaign would be successful but the probability is relatively small.'
+"As user age increase, it is more likely that the campaign would be successful but the probability is relatively small."
+;
 
 footnote3
-'Based on the result, a small pvalue indicate that user age did affect their final decisions in the campaign even though the affectness is relatively small.'
+"Based on the result, a small pvalue indicate that user age did affect their final decisions in the campaign even though the affectness is relatively small."
 
 ;
 

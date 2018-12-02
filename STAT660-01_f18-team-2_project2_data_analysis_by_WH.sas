@@ -186,8 +186,7 @@ footnote1
 ;
 
 footnote2
-"Their relationships are significant in reality due to the small p values in the analysis result."
-
+"The small p values tell us that the relationships are significant in reality."
 ;
 
 footnote3

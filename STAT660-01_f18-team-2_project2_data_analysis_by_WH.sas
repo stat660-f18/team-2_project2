@@ -191,7 +191,7 @@ footnote2
 ;
 
 footnote3
-"The consumer confidence index has a positive relationship with the campaign result which means if monthly consumer confidence index increases,users are more likely to be a subscriber after campaign.However, monthly consumer price index has a negative effect on the campaign result."
+"The consumer confidence index has a positive relationship with the campaign result while monthly consumer price index has a negative effect."
 ;
 
 

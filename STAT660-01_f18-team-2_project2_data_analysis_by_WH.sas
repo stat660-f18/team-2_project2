@@ -187,6 +187,7 @@ footnote1
 
 footnote2
 "The small p values tell us that the relationships are significant in reality."
+
 ;
 
 footnote3
